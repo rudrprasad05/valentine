@@ -113,9 +113,9 @@ export const PhoneComponent = () => {
           <div ref={messagesEndRef} />
         </ScrollArea>
       </CardContent>
-      <CardFooter className="w-[28rem] px-6 py-3 h-16 border-t">
+      <CardFooter className="sm:mb-12 px-6 md:py-3 h-16 border-none md:border-t">
         <div className="flex gap-3 w-full items-center">
-          <div className="grow">
+          <div className="grow justify-around flex">
             <Button
               onClick={() => {
                 setTempMsg((prev) => [
