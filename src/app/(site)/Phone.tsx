@@ -113,7 +113,7 @@ export const PhoneComponent = () => {
           <div ref={messagesEndRef} />
         </ScrollArea>
       </CardContent>
-      <CardFooter className="sm:mb-12 px-6 md:py-3 h-16 border-none md:border-t">
+      <CardFooter className="px-6 md:py-3 h-16 border-none md:border-t">
         <div className="flex gap-3 w-full items-center">
           <div className="grow justify-around flex">
             <Button
