@@ -19,6 +19,7 @@ import { CallBtn } from "./Call";
 import { Button } from "@/components/ui/button";
 import { Props } from "./page";
 import { useSearchParams } from "next/navigation";
+import { VideoBtn } from "./Vid";
 
 export type Foo = {
   constant: number;
@@ -35,7 +36,12 @@ let MSG: Foo[] = [
   { constant: 1, who: "ME", msg: "what up?", type: "TEXT" },
   { constant: 1, who: "POOKIE", msg: "so... i had a question", type: "TEXT" },
   { constant: 1, who: "POOKIE", msg: "/gif1.gif", type: "IMG" },
-  { constant: 1, who: "POOKIE", msg: "will you be my valentine", type: "TEXT" },
+  {
+    constant: 1,
+    who: "POOKIE",
+    msg: "will you be my valentine 🥺",
+    type: "TEXT",
+  },
 ];
 
 export const PhoneComponent = ({ type }: { type: string }) => {
@@ -82,7 +88,7 @@ export const PhoneComponent = ({ type }: { type: string }) => {
 
         <div className="flex gap-3 text-secondary">
           <CallBtn />
-          <Video />
+          <VideoBtn />
         </div>
       </CardHeader>
       <CardContent className="p-6 text-right h-[500px] overflow-scroll">
@@ -139,7 +145,7 @@ export const PhoneComponent = ({ type }: { type: string }) => {
                   ...prev,
                   {
                     who: "ME",
-                    msg: "No",
+                    msg: "No 😠",
                     type: "TEXT",
                     constant: 0,
                   },
@@ -325,7 +331,7 @@ const MyMessage = ({
           )}
         >
           <p className="flex gap-1 rounded-md text-secondary-foreground bg-secondary px-3 py-2">
-            {msg?.msg as string} <p>😠</p>
+            {msg?.msg as string}
           </p>
           <MyAvatar />
         </div>
@@ -359,14 +365,15 @@ const PookieMessage = ({
 
 const PookieAvatar = () => {
   const params = useSearchParams();
-  const isGuy = params.get("type");
+  const type = params.get("type");
+  const isGuy = type?.toLowerCase() == "guy";
   return (
     <Avatar
       className={cn("w-6 h-6 mt-auto rounded-full border border-primary")}
     >
       <AvatarImage
         className="object-cover"
-        src={isGuy ? "abs.jpeg" : "my_pic.jpeg"}
+        src={isGuy ? "my_pic.jpeg" : "abs.jpeg"}
       />
       <AvatarFallback>{"ILY"}</AvatarFallback>
     </Avatar>
@@ -375,14 +382,15 @@ const PookieAvatar = () => {
 
 const MyAvatar = () => {
   const params = useSearchParams();
-  const isGuy = params.get("type");
+  const type = params.get("type");
+  const isGuy = type?.toLowerCase() == "guy";
   return (
     <Avatar
       className={cn("w-6 h-6 mt-auto rounded-full border border-primary")}
     >
       <AvatarImage
         className="object-cover"
-        src={isGuy ? "my_pic.jpeg" : "abs.jpeg"}
+        src={isGuy ? "abs.jpeg" : "my_pic.jpeg"}
       />
       <AvatarFallback>{"ILY"}</AvatarFallback>
     </Avatar>

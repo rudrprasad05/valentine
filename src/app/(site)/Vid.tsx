@@ -20,19 +20,11 @@ import {
   Video,
   Volume2,
 } from "lucide-react";
+import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
-const icons = [
-  { name: Mic },
-  { name: MessageCircle },
-  { name: Volume2 },
-  { name: Video },
-  { name: Laptop2 },
-  { name: Plus },
-];
-
-export const CallBtn = () => {
+export const VideoBtn = () => {
   const [seconds, setSeconds] = useState(0);
   const [minutes, setMinutes] = useState(0);
 
@@ -76,35 +68,41 @@ export const CallBtn = () => {
       }}
     >
       <DialogTrigger asChild>
-        <Phone />
+        <Video />
       </DialogTrigger>
       <DialogContent className="min-w-[250px]">
         <DialogHeader>
           <DialogTitle className="text-center text-3xl">Pookie 😘</DialogTitle>
-          <DialogDescription></DialogDescription>
+          <DialogDescription className="flex-row text-center items-center">
+            {format(minutes, seconds)}
+          </DialogDescription>
+          <DialogDescription className="flex-row text-center items-center">
+            Network Quality <span className="text-green-400">Excellent</span>
+          </DialogDescription>
         </DialogHeader>
-        <DialogDescription className="flex-row text-center items-center">
-          {format(minutes, seconds)}
-        </DialogDescription>
-        <DialogDescription className="flex-row text-center items-center">
-          Network Quality <span className="text-green-400">Excellent</span>
-        </DialogDescription>
-        <div className="grid grid-cols-3 gap-8 px-16">
-          {icons.map((icon, i) => (
-            <Card
-              key={i}
-              className="grid rounded-full place-items-center aspect-square"
-            >
-              <icon.name className="h-8 w-8 " />
-            </Card>
-          ))}
+
+        <div className="relative">
+          <Image src={"/roll.gif"} alt="get wrecked" height={520} width={520} />
+          <div className="p-6 absolute bottom-0 right-0">
+            <Image
+              src={"/donkey.jpg"}
+              alt="get wrecked"
+              height={120}
+              width={120}
+              className="rounded-md"
+            />
+          </div>
         </div>
         <div className="grid grid-cols-3 gap-8 px-16">
-          <div></div>
+          <Card className="rounded-full grid place-items-center aspect-square">
+            <Volume2 className="h-8 w-8 " />
+          </Card>
           <Card className="bg-rose-500 rounded-full grid place-items-center aspect-square">
             <Phone className="h-8 w-8 " />
           </Card>
-          <div></div>
+          <Card className="rounded-full grid place-items-center aspect-square">
+            <Mic className="h-8 w-8 " />
+          </Card>
         </div>
       </DialogContent>
     </Dialog>

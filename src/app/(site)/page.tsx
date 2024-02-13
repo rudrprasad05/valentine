@@ -1,13 +1,13 @@
 import Image from "next/image";
 import { PhoneComponent } from "./Phone";
 import Link from "next/link";
+import { buttonVariants } from "@/components/ui/button";
 
 export type Props = {
   searchParams: { type: string | undefined };
 };
 
 export default function Home({ searchParams }: Props) {
-  console.log(searchParams.type);
   if (searchParams.type == undefined)
     return (
       <div
@@ -22,9 +22,30 @@ export default function Home({ searchParams }: Props) {
               <p className="text-3xl">You are...</p>
             </div>
             <div className="pt-6">
-              34567876543456oiu54325q /<Link href={"?type=guy"}>Male</Link>
-              <Link href={"?type=girl"}>Female</Link>
-              <Link href={"?type=guy"}>Idc just here for the vibes</Link>
+              <div className="flex gap-6">
+                <Link
+                  className={`${buttonVariants({ variant: "default" })} grow`}
+                  href={"?type=guy"}
+                >
+                  ♂️ Male
+                </Link>
+                <Link
+                  className={`${buttonVariants({ variant: "default" })} grow`}
+                  href={"?type=girl"}
+                >
+                  ♀️ Female
+                </Link>
+              </div>
+              <div className="pt-6 w-full">
+                <Link
+                  className={`w-full ${buttonVariants({
+                    variant: "secondary",
+                  })}`}
+                  href={"?type=girl"}
+                >
+                  Idc just here for the vibes
+                </Link>
+              </div>
             </div>
           </div>
         </div>
