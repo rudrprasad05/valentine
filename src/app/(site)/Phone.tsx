@@ -17,6 +17,8 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import Image from "next/image";
 import { CallBtn } from "./Call";
 import { Button } from "@/components/ui/button";
+import { Props } from "./page";
+import { useSearchParams } from "next/navigation";
 
 export type Foo = {
   constant: number;
@@ -36,7 +38,9 @@ let MSG: Foo[] = [
   { constant: 1, who: "POOKIE", msg: "will you be my valentine", type: "TEXT" },
 ];
 
-export const PhoneComponent = () => {
+export const PhoneComponent = ({ type }: { type: string }) => {
+  const isGuy = type == "guy";
+  const params = useSearchParams();
   const [ticking, setTicking] = useState(true),
     [count, setCount] = useState(0);
 
@@ -47,13 +51,6 @@ export const PhoneComponent = () => {
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
-
-  // useEffect(() => {
-  //   const timer = setTimeout(() => ticking && setCount(count + 1), 1e3);
-  //   // checkCount(count);
-  //   scrollToBottom();
-  //   return () => clearTimeout(timer);
-  // }, [count, ticking, tempMsg]);
 
   useEffect(() => {
     scrollToBottom();
@@ -74,7 +71,10 @@ export const PhoneComponent = () => {
       <CardHeader className="flex border-b flex-row justify-between px-6 py-3">
         <div className="flex gap-3 items-center">
           <Avatar className={cn("rounded-full border border-primary")}>
-            <AvatarImage className="object-cover" src={"my_pic.jpeg"} />
+            <AvatarImage
+              className="object-cover"
+              src={isGuy ? "my_pic.jpeg" : "abs.jpeg"}
+            />
             <AvatarFallback>{"ILY"}</AvatarFallback>
           </Avatar>
           <h1 className="text-secondary">Pookie 😘</h1>
@@ -113,10 +113,11 @@ export const PhoneComponent = () => {
           <div ref={messagesEndRef} />
         </ScrollArea>
       </CardContent>
-      <CardFooter className="px-6 md:py-3 h-16 border-none md:border-t">
+      <CardFooter className="px-6 md:py-3 h-16 md:border-t border-background">
         <div className="flex gap-3 w-full items-center">
-          <div className="grow justify-around flex">
+          <div className="grow gap-6 flex">
             <Button
+              className="grow"
               onClick={() => {
                 setTempMsg((prev) => [
                   ...prev,
@@ -129,9 +130,10 @@ export const PhoneComponent = () => {
                 ]);
               }}
             >
-              Yes
+              ✅ Yes
             </Button>
             <Button
+              className="grow"
               onClick={() => {
                 setTempMsg((prev) => [
                   ...prev,
@@ -144,7 +146,7 @@ export const PhoneComponent = () => {
                 ]);
               }}
             >
-              No
+              🛑 No
             </Button>
           </div>
 
@@ -210,7 +212,6 @@ const HandleImg = ({
   constant: number;
 }) => {
   if (msg.msg.toLowerCase() == "yes") {
-    console.log("yes fired");
     return (
       <>
         <div className="w-full flex items-center mb-2 relative">
@@ -220,7 +221,9 @@ const HandleImg = ({
             transition={{ delay: 1 * index * constant }}
           >
             <div className={cn("flex gap-3 ml-auto")}>
-              <p className="rounded-md bg-primary px-3 py-2">yes</p>
+              <p className="rounded-md bg-secondary text-secondary-foreground px-3 py-2">
+                yes 😘
+              </p>
               <MyAvatar />
             </div>
           </motion.div>
@@ -300,8 +303,6 @@ const MyMessage = ({
   constant: number;
 }) => {
   if (msg?.msg.toLowerCase() == "yes") {
-    console.log(msg);
-
     return <HandleImg msg={msg} index={0} constant={0} />;
   }
   return (
@@ -323,8 +324,8 @@ const MyMessage = ({
             msg?.msg.toLowerCase() == "no" && "w-min"
           )}
         >
-          <p className="rounded-md bg-primary px-3 py-2">
-            {msg?.msg as string}
+          <p className="flex gap-1 rounded-md text-secondary-foreground bg-secondary px-3 py-2">
+            {msg?.msg as string} <p>😠</p>
           </p>
           <MyAvatar />
         </div>
@@ -357,22 +358,32 @@ const PookieMessage = ({
 };
 
 const PookieAvatar = () => {
+  const params = useSearchParams();
+  const isGuy = params.get("type");
   return (
     <Avatar
       className={cn("w-6 h-6 mt-auto rounded-full border border-primary")}
     >
-      <AvatarImage className="object-cover" src={"my_pic.jpeg"} />
+      <AvatarImage
+        className="object-cover"
+        src={isGuy ? "abs.jpeg" : "my_pic.jpeg"}
+      />
       <AvatarFallback>{"ILY"}</AvatarFallback>
     </Avatar>
   );
 };
 
 const MyAvatar = () => {
+  const params = useSearchParams();
+  const isGuy = params.get("type");
   return (
     <Avatar
       className={cn("w-6 h-6 mt-auto rounded-full border border-primary")}
     >
-      <AvatarImage className="object-cover" src={"abs.jpeg"} />
+      <AvatarImage
+        className="object-cover"
+        src={isGuy ? "my_pic.jpeg" : "abs.jpeg"}
+      />
       <AvatarFallback>{"ILY"}</AvatarFallback>
     </Avatar>
   );
