@@ -78,7 +78,7 @@ export const CallBtn = () => {
       <DialogTrigger asChild>
         <Phone />
       </DialogTrigger>
-      <DialogContent className="min-w-[250px]">
+      <DialogContent className="md:min-w-[250px] w-[230px]">
         <DialogHeader>
           <DialogTitle className="text-center text-3xl">Pookie 😘</DialogTitle>
           <DialogDescription></DialogDescription>
@@ -89,20 +89,20 @@ export const CallBtn = () => {
         <DialogDescription className="flex-row text-center items-center">
           Network Quality <span className="text-green-400">Excellent</span>
         </DialogDescription>
-        <div className="grid grid-cols-3 gap-8 px-16">
+        <div className="grid grid-cols-3 gap-4 md:gap-8 px-4 md:px-16">
           {icons.map((icon, i) => (
             <Card
               key={i}
               className="grid rounded-full place-items-center aspect-square"
             >
-              <icon.name className="h-8 w-8 " />
+              <icon.name className="md:h-8 md:w-8 w-4 h-4 " />
             </Card>
           ))}
         </div>
-        <div className="grid grid-cols-3 gap-8 px-16">
+        <div className="grid grid-cols-3 gap-8 px-4 md:px-16">
           <div></div>
           <Card className="bg-rose-500 rounded-full grid place-items-center aspect-square">
-            <Phone className="h-8 w-8 " />
+            <Phone className="md:h-8 md:w-8 w-4 h-4 " />
           </Card>
           <div></div>
         </div>

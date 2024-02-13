@@ -60,7 +60,7 @@ export default function Home({ searchParams }: Props) {
       }}
       className="w-screen max-h-screen"
     >
-      <div className="bg-background/10 w-screen h-screen py-12 md:py-6 backdrop-blur-sm">
+      <div className="bg-background/10 w-screen h-screen py-0 md:py-6 backdrop-blur-sm">
         <PhoneComponent type={searchParams.type} />
       </div>
     </div>

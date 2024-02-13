@@ -86,6 +86,7 @@ export const VideoBtn = () => {
           <div className="p-6 absolute bottom-0 right-0">
             <Image
               src={"/donkey.jpg"}
+              sizes="(max-width: 768px) 100vw, 33vw"
               alt="get wrecked"
               height={120}
               width={120}
@@ -93,15 +94,15 @@ export const VideoBtn = () => {
             />
           </div>
         </div>
-        <div className="grid grid-cols-3 gap-8 px-16">
+        <div className="grid grid-cols-3 gap-4 md:gap-8 px-4 md:px-16">
           <Card className="rounded-full grid place-items-center aspect-square">
-            <Volume2 className="h-8 w-8 " />
+            <Volume2 className="md:h-8 md:w-8 w-6 h-6 " />
           </Card>
           <Card className="bg-rose-500 rounded-full grid place-items-center aspect-square">
-            <Phone className="h-8 w-8 " />
+            <Phone className="md:h-8 md:w-8 w-6 h-6 " />
           </Card>
           <Card className="rounded-full grid place-items-center aspect-square">
-            <Mic className="h-8 w-8 " />
+            <Mic className="md:h-8 md:w-8 w-6 h-6 " />
           </Card>
         </div>
       </DialogContent>
