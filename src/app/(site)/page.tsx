@@ -22,7 +22,7 @@ export default function Home({ searchParams }: Props) {
               <p className="text-3xl">You are...</p>
             </div>
             <div className="pt-6">
-              <Link href={"?type=guy"}>Male</Link>
+              34567876543456oiu54325q /<Link href={"?type=guy"}>Male</Link>
               <Link href={"?type=girl"}>Female</Link>
               <Link href={"?type=guy"}>Idc just here for the vibes</Link>
             </div>
